@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Metallica - Thrash Metal Cassette Rack & Player</title>
+  <meta name="description" content="Metallica efsanevi şarkılarını ağır metal kaset çalarda dinle. Kaseti sürükle bırak veya çalara tıkla!">
+  
+  <!-- Google Fonts: Rock & Metal Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Metal+Mania&family=Permanent+Marker&family=Silkscreen&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- YouTube Iframe API Script -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <style>
+    :root {
+      --bg-dark: #0a0a0c;
+      --bg-pattern: #16171c;
+      --metal-frame: #1c1d22;
+      --metal-border: #383b45;
+      --metal-accent: #e51013; /* Metallica Red */
+      --metal-gold: #f39c12;
+      --metal-chrome: #d1d5db;
+      --metal-screen: #0f1412;
+      --led-green: #00ff66;
+      --led-yellow: #ffcc00;
+      --led-red: #ff3333;
+      
+      --font-metal: 'Metal Mania', cursive, sans-serif;
+      --font-title: 'Cinzel', serif;
+      --font-hand: 'Permanent Marker', cursive;
+      --font-pixel: 'Silkscreen', monospace;
+      --font-tech: 'Teko', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(#23252e 12%, transparent 12%),
+        linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(10,10,12,0.95));
+      background-size: 20px 20px, 100% 100%;
+      color: #e1e1e6;
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      overflow-x: hidden;
+    }
+
+    /* Header styling */
+    header.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      max-width: 1150px;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 2px solid #222;
+      padding-bottom: 1rem;
+    }
+
+    .header-left .eyebrow {
+      font-family: var(--font-pixel);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      color: var(--metal-accent);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      text-shadow: 0 0 10px rgba(229, 16, 19, 0.5);
+    }
+
+    .header-left h1 {
+      font-family: var(--font-metal);
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      color: #fff;
+      line-height: 1;
+      letter-spacing: 2px;
+      text-shadow: 3px 3px 0 #000, -1px -1px 0 #e51013, 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .header-left h1 span.metal-sub {
+      font-family: var(--font-hand);
+      color: var(--metal-gold);
+      font-size: 0.5em;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+
+    .header-right {
+      max-width: 400px;
+      font-size: 0.95rem;
+      color: #9aa0a6;
+      font-weight: 500;
+      line-height: 1.4;
+      text-align: right;
+    }
+
+    @media (max-width: 800px) {
+      header.top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-right {
+        text-align: left;
+      }
+    }
+
+    /* Main Grid Layout */
+    main.app {
+      display: flex;
+      flex-direction: row;
+      gap: 2.5rem;
+      max-width: 1200px;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    @media (max-width: 980px) {
+      main.app {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Metallica Metal Player Console */
+    aside.console {
+      width: 430px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: sticky;
+      top: 1.5rem;
+      z-index: 10;
+    }
+
+    @media (max-width: 460px) {
+      aside.console {
+        width: 100%;
+      }
+    }
+
+    /* Rocker Boombox Body */
+    .boombox {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(145deg, #1f2127, #111215);
+      border: 4px solid #3a3d47;
+      border-radius: 18px;
+      padding: 24px 22px;
+      box-shadow: 0 16px 35px rgba(0,0,0,0.8), inset 0 2px 3px rgba(255,255,255,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .boombox::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 15%;
+      right: 15%;
+      height: 12px;
+      background: #2a2c33;
+      border: 2px solid #4a4e5a;
+      border-radius: 6px 6px 0 0;
+    }
+
+    /* Steel Corners with Rivets */
+    .rivet {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, #e6e6e6 30%, #555 80%);
+      border-radius: 50%;
+      box-shadow: inset 1px 1px 1px rgba(255,255,255,0.8), 0 2px 3px rgba(0,0,0,0.8);
+    }
+    .rivet.tl { top: 10px; left: 10px; }
+    .rivet.tr { top: 10px; right: 10px; }
+    .rivet.bl { bottom: 10px; left: 10px; }
+    .rivet.br { bottom: 10px; right: 10px; }
+
+    .boombox.drag-over {
+      transform: scale(1.02);
+      border-color: var(--metal-accent);
+      box-shadow: 0 0 35px rgba(229, 16, 19, 0.6), 0 14px 0 #000;
+    }
+
+    /* Screen display */
+    .screen {
+      position: relative;
+      width: 100%;
+      height: 245px;
+      background: #000;
+      border: 4px solid #2a2c33;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+    }
+
+    .tv {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .tv-bar {
+      background: #111215;
+      color: #e51013;
+      font-family: var(--font-pixel);
+      font-size: 0.72rem;
+      padding: 6px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #222;
+    }
+
+    .tv-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tv-fs {
+      background: transparent;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .tv-video {
+      position: relative;
+      flex: 1;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #yt {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .tv-cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.65);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 5;
+    }
+
+    .tv-cover.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cover-icon {
+      font-size: 3rem;
+      color: var(--metal-accent);
+      filter: drop-shadow(0 0 10px var(--metal-accent));
+    }
+
+    .cover-text {
+      font-family: var(--font-pixel);
+      font-size: 0.75rem;
+      margin-top: 8px;
+      background: #111;
+      border: 1px solid var(--metal-accent);
+      padding: 5px 12px;
+      border-radius: 4px;
+      color: #fff;
+    }
+
+    .seek {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      z-index: 6;
+    }
+
+    .seek-fill {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--metal-accent);
+      box-shadow: 0 0 8px var(--metal-accent);
+      transition: width 0.1s linear;
+    }
+
+    .ticker {
+      white-space: nowrap;
+      overflow: hidden;
+      font-family: var(--font-pixel);
+      font-size: 0.7rem;
+      color: var(--metal-gold);
+      letter-spacing: 1px;
+    }
+
+    /* Metal Face Screen Overlay */
+    .face-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #1a1c23 20%, #090a0c 90%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 3;
+      transition: opacity 0.3s ease;
+    }
+
+    .face-layer.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .face-skull {
+      width: 120px;
+      height: 110px;
+      fill: #d1d5db;
+      filter: drop-shadow(0 0 12px rgba(229,16,19,0.4));
+    }
+
+    .face-text {
+      font-family: var(--font-pixel);
+      font-size: 0.85rem;
+      color: var(--metal-accent);
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px rgba(229,16,19,0.6);
+    }
+
+    /* Cassette Slot Row */
+    .bmo-row {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .slot {
+      flex: 1;
+      height: 22px;
+      background: #050506;
+      border-radius: 6px;
+      position: relative;
+      overflow: visible;
+      border: 3px solid #333640;
+      box-shadow: inset 0 3px 8px rgba(0,0,0,0.9);
+    }
+
+    .slot-tape {
+      position: absolute;
+      top: -22px;
+      left: 10%;
+      width: 80%;
+      height: 18px;
+      background: #333;
+      border: 2px solid var(--metal-accent);
+      border-radius: 4px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    aside[data-state="loading"] .slot-tape,
+    aside[data-state="playing"] .slot-tape,
+    aside[data-state="paused"] .slot-tape {
+      opacity: 1;
+      transform: translateY(20px);
+    }
+
+    /* Equalizer LED Indicators */
+    .vu-meter {
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      height: 20px;
+      background: #0d0e11;
+      padding: 3px 6px;
+      border-radius: 4px;
+      border: 1.5px solid #282a33;
+    }
+
+    .vu-bar {
+      width: 4px;
+      height: 100%;
+      background: #222;
+      border-radius: 1px;
+      position: relative;
+    }
+
+    .vu-bar::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 40%;
+      background: var(--led-green);
+      box-shadow: 0 0 5px var(--led-green);
+    }
+    aside[data-state="playing"] .vu-bar:nth-child(1)::after { height: 80%; background: var(--led-yellow); }
+    aside[data-state="playing"] .vu-bar:nth-child(2)::after { height: 100%; background: var(--led-red); }
+    aside[data-state="playing"] .vu-bar:nth-child(3)::after { height: 60%; background: var(--led-green); }
+
+    /* Rocker Controls Pad Row */
+    .pad-row {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    /* D-Pad Metal Control */
+    .dpad {
+      position: relative;
+      width: 90px;
+      height: 90px;
+    }
+
+    .dpad .d {
+      position: absolute;
+      background: linear-gradient(145deg, #3a3d47, #22242a);
+      border: 3px solid #111;
+      cursor: pointer;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.6);
+      transition: filter 0.1s, transform 0.1s;
+    }
+
+    .dpad .d:active { filter: brightness(1.3); transform: scale(0.96); }
+    .dpad .up { top: 0; left: 30px; width: 30px; height: 34px; border-radius: 6px 6px 0 0; border-bottom: none; }
+    .dpad .down { bottom: 0; left: 30px; width: 30px; height: 34px; border-radius: 0 0 6px 6px; border-top: none; }
+    .dpad .left { top: 30px; left: 0; width: 34px; height: 30px; border-radius: 6px 0 0 6px; border-right: none; }
+    .dpad .right { top: 30px; right: 0; width: 34px; height: 30px; border-radius: 0 6px 6px 0; border-left: none; }
+    .dpad .mid { top: 30px; left: 30px; width: 30px; height: 30px; background: #2b2d35; z-index: 2; border: none; }
+
+    /* Metallic Action Buttons */
+    .btns {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .b {
+      border: 3px solid #111;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #0d0e11, inset 0 2px 2px rgba(255,255,255,0.2);
+      transition: transform 0.1s, box-shadow 0.1s;
+      outline: none;
+    }
+
+    .b:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #0d0e11;
+    }
+
+    .b.tri {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 18px 0 18px 28px;
+      border-color: transparent transparent transparent var(--metal-accent);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      filter: drop-shadow(2px 3px 0px #000);
+      margin-right: 4px;
+    }
+
+    .b.green {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(145deg, #f39c12, #d35400);
+    }
+
+    .b.red {
+      width: 46px;
+      height: 46px;
+      background: linear-gradient(145deg, #e51013, #900c0e);
+    }
+
+    /* Marshall Amp Mesh Footer Line */
+    .boom-foot {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: #0e0f12;
+      border-radius: 8px;
+      border: 1px solid #282a33;
+    }
+
+    .grille {
+      display: flex;
+      gap: 4px;
+    }
+
+    .grille i {
+      display: block;
+      width: 18px;
+      height: 4px;
+      background: #444;
+      border-radius: 2px;
+    }
+
+    .boom-name {
+      font-family: var(--font-metal);
+      font-size: 1.2rem;
+      color: #fff;
+      letter-spacing: 3px;
+      text-shadow: 0 0 8px rgba(255,255,255,0.4);
+    }
+
+    /* Now Playing Info Card */
+    .now {
+      margin-top: 1.5rem;
+      width: 100%;
+      background: #14151a;
+      border: 2px dashed #3a3d47;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .now-tape {
+      width: 54px;
+      height: 36px;
+      background: #222;
+      border-radius: 5px;
+      flex-shrink: 0;
+      position: relative;
+      border: 2px solid var(--metal-accent);
+    }
+
+    .now-tape::after {
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: 10px;
+      right: 10px;
+      height: 14px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .now-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .now-eyebrow {
+      font-size: 0.72rem;
+      font-family: var(--font-pixel);
+      color: var(--metal-accent);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .now-title {
+      font-size: 1.1rem;
+      font-family: var(--font-title);
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #fff;
+    }
+
+    .now-meta {
+      font-size: 0.8rem;
+      color: #888;
+      line-height: 1.3;
+    }
+
+    .now-link {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 0.75rem;
+      color: var(--metal-gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .legend {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      list-style: none;
+      font-size: 0.75rem;
+      color: #888;
+    }
+
+    .legend kbd {
+      background: #222;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: var(--font-pixel);
+      font-size: 0.7rem;
+    }
+
+    /* Cassette Shelf Rack */
+    section.rack {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      width: 100%;
+    }
+
+    .cubby {
+      background: linear-gradient(180deg, #2d1d13, #1c110a);
+      border: 6px solid #4a2f1c;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 10px 0 #120a06, 0 16px 30px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .cubby-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cubby-head .tag-tape {
+      background: #e51013;
+      color: #fff;
+      font-family: var(--font-metal);
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      padding: 3px 14px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
+      transform: rotate(-1.5deg);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 3px;
+    }
+
+    .cubby-head .tag-tape small {
+      font-family: var(--font-pixel);
+      font-size: 0.7rem;
+      color: #ffcccc;
+    }
+
+    .cubby-head .count-tag {
+      background: #111;
+      color: var(--metal-gold);
+      border: 1px solid var(--metal-gold);
+      font-family: var(--font-pixel);
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .cubby-box {
+      background: #0e0a07;
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 160px;
+      box-shadow: inset 0 6px 15px rgba(0,0,0,0.9);
+      transition: background 0.2s ease;
+    }
+
+    .cubby-box.drag-over {
+      background: rgba(229, 16, 19, 0.2);
+      border: 2px dashed var(--metal-accent);
+    }
+
+    /* 3 Column Grid for Heavy Metal Cassettes */
+    .tapes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 650px) {
+      .tapes {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 400px) {
+      .tapes {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Heavy Metal Cassette Card */
+    .tape {
+      background: var(--shell, #1a1a1a);
+      border: 3px solid #0a0a0a;
+      border-radius: 8px;
+      padding: 6px;
+      cursor: grab;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 5px 0 rgba(0,0,0,0.6);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      text-align: left;
+      outline: none;
+    }
+
+    .tape:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 9px 0 rgba(0,0,0,0.7), 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    .tape:active {
+      cursor: grabbing;
+      transform: translateY(0);
+      box-shadow: 0 2px 0 rgba(0,0,0,0.7);
+    }
+
+    .tape.is-dragging {
+      opacity: 0.4;
+      transform: scale(0.95);
+    }
+
+    .tape.active-playing {
+      border-color: var(--metal-accent);
+      box-shadow: 0 0 18px var(--metal-accent), 0 5px 0 rgba(0,0,0,0.8);
+    }
+
+    .tape-shell {
+      height: 4px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 2px;
+    }
+
+    .tape-label {
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 4px;
+      padding: 5px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .tape-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tape-title {
+      font-family: var(--font-hand);
+      font-size: 0.9rem;
+      color: #111;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100px;
+    }
+
+    .tape-side-badge {
+      width: 16px;
+      height: 16px;
+      background: #000;
+      color: #fff;
+      font-family: var(--font-pixel);
+      font-size: 0.6rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tape-sub {
+      font-size: 0.62rem;
+      color: #444;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 700;
+    }
+
+    .tape-band {
+      margin-top: 2px;
+      height: 20px;
+      background: var(--band, #e51013);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
+
+    .tape-window {
+      width: 72%;
+      height: 100%;
+      background: rgba(255,255,255,0.92);
+      border: 1.5px solid #000;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    .reel {
+      width: 11px;
+      height: 11px;
+      background: #000;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .reel::after {
+      content: '';
+      position: absolute;
+      top: 2.5px;
+      left: 2.5px;
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .tape.active-playing .reel {
+      animation: spinReel 1.2s linear infinite;
+    }
+
+    @keyframes spinReel {
+      100% { transform: rotate(360deg); }
+    }
+
+    .tape-foot {
+      height: 6px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 2px;
+    }
+
+    footer.foot {
+      margin-top: 3.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #777;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 2rem;
+    }
+
+    footer.foot strong {
+      color: var(--metal-accent);
+    }
+  </style>
+</head>
+
+<body>
+  <header class="top">
+    <div class="header-left">
+      <p class="eyebrow">HEAVY METAL AUDIO DECK</p>
+      <h1>METALLICA <span class="metal-sub">Kaset Rafı</span></h1>
+    </div>
+    <p class="header-right">Raftan bir Metallica kaseti seç, çalara sürükle bırak veya üstüne tıkla. Metal Sesi Yükselt!</p>
+  </header>
+
+  <main class="app">
+    <!-- Rocker Boombox Player Side -->
+    <aside class="console" id="console" data-state="idle" aria-label="Metallica Boombox Player">
+      <div class="boombox" id="bmoBody">
+        <span class="rivet tl"></span>
+        <span class="rivet tr"></span>
+        <span class="rivet bl"></span>
+        <span class="rivet br"></span>
+
+        <div class="screen">
+          <div class="tv">
+            <div class="tv-bar">
+              <span>METALLICA DECK</span>
+              <span class="tv-right">
+                <span id="osd">▶ 000</span>
+                <button class="tv-fs" id="fsBtn" type="button" aria-label="Tam ekran" title="Tam ekran">⛶</button>
+              </span>
+            </div>
+            <div class="tv-video">
+              <div id="yt"></div>
+              <button class="tv-cover" id="cover" type="button" aria-label="Oynat / duraklat">
+                <span class="cover-icon">⚡</span>
+                <span class="cover-text">OYNATMAK İÇİN TIKLA</span>
+              </button>
+              <div class="seek" id="seek" role="slider" aria-label="Klipte ileri / geri sar">
+                <span class="seek-fill" id="seekFill"></span>
+              </div>
+            </div>
+            <div class="tv-bar"><span class="ticker"><span id="ticker">HEAVY METAL HAZIR... KASET TAK!</span></span></div>
+          </div>
+
+          <!-- Metal Skull Overlay Screen -->
+          <div class="face-layer" id="faceLayer">
+            <svg class="face-skull" viewBox="0 0 100 100" aria-hidden="true">
+              <!-- Skull vector outline -->
+              <path d="M 50 10 C 25 10 15 30 15 50 C 15 65 25 75 30 78 L 30 90 L 70 90 L 70 78 C 75 75 85 65 85 50 C 85 30 75 10 50 10 Z" fill="#2a2c33" stroke="#e51013" stroke-width="3"/>
+              <!-- Eye sockets -->
+              <ellipse cx="35" cy="45" rx="10" ry="12" fill="#e51013" />
+              <ellipse cx="65" cy="45" rx="10" ry="12" fill="#e51013" />
+              <!-- Nose hole -->
+              <polygon points="50,58 45,68 55,68" fill="#111" />
+              <!-- Teeth -->
+              <line x1="38" y1="80" x2="38" y2="90" stroke="#aaa" stroke-width="2"/>
+              <line x1="46" y1="80" x2="46" y2="90" stroke="#aaa" stroke-width="2"/>
+              <line x1="54" y1="80" x2="54" y2="90" stroke="#aaa" stroke-width="2"/>
+              <line x1="62" y1="80" x2="62" y2="90" stroke="#aaa" stroke-width="2"/>
+            </svg>
+            <p class="face-text" id="faceText">SEÇ & HEADBANG!</p>
+          </div>
+        </div>
+
+        <!-- Cassette Slot Row -->
+        <div class="bmo-row">
+          <div class="slot" id="bmoSlot">
+            <span class="slot-mouth"><span class="slot-tape" id="slotTape"></span></span>
+          </div>
+          <div class="vu-meter">
+            <span class="vu-bar"></span>
+            <span class="vu-bar"></span>
+            <span class="vu-bar"></span>
+          </div>
+        </div>
+
+        <!-- Rocker D-Pad & Controls -->
+        <div class="pad-row">
+          <div class="dpad">
+            <button class="d up" data-act="volup" aria-label="Sesi aç" title="Sesi aç (↑)"></button>
+            <button class="d left" data-act="prev" aria-label="Önceki kaset" title="Önceki kaset (←)"></button>
+            <span class="d mid"></span>
+            <button class="d right" data-act="next" aria-label="Sonraki kaset" title="Sonraki kaset (→)"></button>
+            <button class="d down" data-act="voldown" aria-label="Sesi kıs" title="Sesi kıs (↓)"></button>
+          </div>
+          <div class="btns">
+            <button class="b tri" data-act="toggle" aria-label="Oynat / duraklat" title="Oynat / duraklat (Boşluk)"></button>
+            <button class="b green" data-act="shuffle" aria-label="Rastgele Kaset Oynat" title="Rastgele Kaset"></button>
+            <button class="b red" data-act="eject" aria-label="Kaseti çıkar" title="Kaseti çıkar (Esc)"></button>
+          </div>
+        </div>
+
+        <div class="boom-foot">
+          <span class="grille"><i></i><i></i><i></i><i></i></span>
+          <span class="boom-name">METALLICA</span>
+        </div>
+      </div>
+
+      <!-- Now Playing Box -->
+      <section class="now" aria-live="polite">
+        <div class="now-tape" id="nowTape"></div>
+        <div class="now-info">
+          <p class="now-eyebrow" id="nowEyebrow">BOŞTA</p>
+          <h2 class="now-title" id="nowTitle">Kaset takılı değil</h2>
+          <p class="now-meta" id="nowMeta">Raftan bir Metallica kaseti seç ya da kaset çalara tıkla.</p>
+          <a class="now-link" id="nowLink" target="_blank" rel="noopener" hidden>YouTube'da Oynat ↗</a>
+        </div>
+      </section>
+
+      <ul class="legend">
+        <li><kbd>←</kbd><kbd>→</kbd> Değiştir</li>
+        <li><kbd>↑</kbd><kbd>↓</kbd> Ses</li>
+        <li><kbd>Boşluk</kbd> Duraklat</li>
+        <li><kbd>Esc</kbd> Çıkar</li>
+      </ul>
+    </aside>
+
+    <!-- Cassette Shelf Side -->
+    <section class="rack" id="rack" aria-label="Metallica Kaset Rafı">
+      <!-- Side A: 80s Thrash Era -->
+      <div class="cubby" id="cubbyA">
+        <div class="cubby-head">
+          <div class="tag-tape">A YÜZÜ <small>80s CLASSICS</small></div>
+          <div class="count-tag" id="countA">7 KASET</div>
+        </div>
+        <div class="cubby-box" data-side="A">
+          <div class="tapes" id="tapesA"></div>
+        </div>
+      </div>
+
+      <!-- Side B: 90s - Modern Metal Era -->
+      <div class="cubby" id="cubbyB">
+        <div class="cubby-head">
+          <div class="tag-tape">B YÜZÜ <small>90s - MODERN ERA</small></div>
+          <div class="count-tag" id="countB">6 KASET</div>
+        </div>
+        <div class="cubby-box" data-side="B">
+          <div class="tapes" id="tapesB"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p class="credit">Created for <strong>Metallica & Heavy Metal Fans</strong></p>
+    <p>Tüm parçalar Metallica YouTube kanalından oynatılmaktadır.</p>
+  </footer>
+
+  <script>
+    /* Metallica Cassette Catalog Data with Iconic Colors & YouTube IDs */
+    const TAPE_CATALOG = [
+      // Side A (80s Thrash Classics)
+      { id: 'master', side: 'A', title: 'Master of Puppets', artist: 'METALLICA - 1986', year: '1986', ytId: '6xjJ2XIbGRk', shell: '#2b090a', band: '#e51013' },
+      { id: 'sandman', side: 'A', title: 'Enter Sandman', artist: 'METALLICA - 1991', year: '1991', ytId: 'CD-E-LDc384', shell: '#111215', band: '#f39c12' },
+      { id: 'one', side: 'A', title: 'One', artist: 'METALLICA - 1988', year: '1988', ytId: 'WM8bTdBs-cw', shell: '#2c3327', band: '#8d99ae' },
+      { id: 'nothing', side: 'A', title: 'Nothing Else Matters', artist: 'METALLICA - 1991', year: '1991', ytId: 'tAGnKpE4NCI', shell: '#181818', band: '#d1d5db' },
+      { id: 'unforgiven', side: 'A', title: 'The Unforgiven', artist: 'METALLICA - 1991', year: '1991', ytId: 'DDGhKS6bSAE', shell: '#3d2b1f', band: '#c29b38' },
+      { id: 'fade', side: 'A', title: 'Fade to Black', artist: 'METALLICA - 1984', year: '1984', ytId: 'tAGnKpE4NCI', shell: '#0d1b2a', band: '#415a77' },
+      { id: 'seek', side: 'A', title: 'Seek & Destroy', artist: 'METALLICA - 1983', year: '1983', ytId: '2f1Ny74_ou0', shell: '#222222', band: '#e51013' },
+
+      // Side B (90s - Modern Era)
+      { id: 'whiskey', side: 'B', title: 'Whiskey in the Jar', artist: 'METALLICA - 1998', year: '1998', ytId: '9MNdOCQYOL8', shell: '#0b2b18', band: '#f1c40f' },
+      { id: 'fuel', side: 'B', title: 'Fuel', artist: 'METALLICA - 1997', year: '1997', ytId: '0xCuS1qCuAs', shell: '#3f0c00', band: '#e67e22' },
+      { id: 'sad', side: 'B', title: 'Sad But True', artist: 'METALLICA - 1991', year: '1991', ytId: 'L397TWLojUU', shell: '#141414', band: '#e51013' },
+      { id: 'disappear', side: 'B', title: 'I Disappear', artist: 'METALLICA - 2000', year: '2000', ytId: 'nYSDC3cHoZs', shell: '#1d2a44', band: '#00b4d8' },
+      { id: 'lux', side: 'B', title: 'Lux Æterna', artist: 'METALLICA - 2022', year: '2022', ytId: '_u-7rWKnVVo', shell: '#3a3200', band: '#ffea00' },
+      { id: 'sleeps', side: 'B', title: 'Until It Sleeps', artist: 'METALLICA - 1996', year: '1996', ytId: 'eRV9uPr4P1E', shell: '#22152b', band: '#a06cd5' }
+    ];
+
+    /* State Variables */
+    let activeTapeIndex = -1;
+    let player = null;
+    let isPlayerReady = false;
+    let progressTimer = null;
+    let volume = 85;
+    let audioCtx = null;
+
+    /* DOM Cache */
+    const consoleEl = document.getElementById('console');
+    const bmoBody = document.getElementById('bmoBody');
+    const faceLayer = document.getElementById('faceLayer');
+    const faceText = document.getElementById('faceText');
+    const ticker = document.getElementById('ticker');
+    const osd = document.getElementById('osd');
+    const cover = document.getElementById('cover');
+    const seekFill = document.getElementById('seekFill');
+    const nowEyebrow = document.getElementById('nowEyebrow');
+    const nowTitle = document.getElementById('nowTitle');
+    const nowMeta = document.getElementById('nowMeta');
+    const nowLink = document.getElementById('nowLink');
+    const nowTape = document.getElementById('nowTape');
+    const slotTape = document.getElementById('slotTape');
+    const tapesAContainer = document.getElementById('tapesA');
+    const tapesBContainer = document.getElementById('tapesB');
+
+    function playBeep(freq = 200, type = 'sawtooth', duration = 0.08) {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function createTapeElement(tape, index) {
+      const btn = document.createElement('button');
+      btn.className = 'tape';
+      btn.type = 'button';
+      btn.draggable = true;
+      btn.dataset.index = index;
+      btn.setAttribute('aria-label', `${tape.title} kasedini çal`);
+      btn.style.setProperty('--shell', tape.shell);
+      btn.style.setProperty('--band', tape.band);
+
+      btn.innerHTML = `
+        <span class="tape-shell"></span>
+        <span class="tape-label">
+          <span class="tape-top">
+            <span class="tape-title">${tape.title}</span>
+            <span class="tape-side-badge">${tape.side}</span>
+          </span>
+          <span class="tape-sub">${tape.artist}</span>
+          <span class="tape-band">
+            <span class="tape-window">
+              <span class="reel l"></span>
+              <span class="reel r"></span>
+            </span>
+          </span>
+        </span>
+        <span class="tape-foot"></span>
+      `;
+
+      btn.addEventListener('click', () => loadTape(index));
+
+      btn.addEventListener('dragstart', (e) => {
+        btn.classList.add('is-dragging');
+        e.dataTransfer.setData('text/plain', index.toString());
+        e.dataTransfer.effectAllowed = 'copyMove';
+        playBeep(300, 'sawtooth', 0.05);
+      });
+
+      btn.addEventListener('dragend', () => {
+        btn.classList.remove('is-dragging');
+      });
+
+      return btn;
+    }
+
+    function renderRack() {
+      tapesAContainer.innerHTML = '';
+      tapesBContainer.innerHTML = '';
+
+      let countA = 0;
+      let countB = 0;
+
+      TAPE_CATALOG.forEach((tape, index) => {
+        const tapeEl = createTapeElement(tape, index);
+        if (tape.side === 'A') {
+          tapesAContainer.appendChild(tapeEl);
+          countA++;
+        } else {
+          tapesBContainer.appendChild(tapeEl);
+          countB++;
+        }
+      });
+
+      document.getElementById('countA').textContent = `${countA} KASET`;
+      document.getElementById('countB').textContent = `${countB} KASET`;
+    }
+
+    function setupDragAndDrop() {
+      const dropTargets = [bmoBody, consoleEl];
+
+      dropTargets.forEach(target => {
+        target.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'copy';
+          bmoBody.classList.add('drag-over');
+          consoleEl.setAttribute('data-state', 'dragover');
+          faceText.textContent = "BANA BIRAK & ÇAL!";
+        });
+
+        target.addEventListener('dragleave', (e) => {
+          e.preventDefault();
+          bmoBody.classList.remove('drag-over');
+          if (activeTapeIndex === -1) {
+            consoleEl.setAttribute('data-state', 'idle');
+            faceText.textContent = "SEÇ & HEADBANG!";
+          } else {
+            consoleEl.setAttribute('data-state', 'playing');
+          }
+        });
+
+        target.addEventListener('drop', (e) => {
+          e.preventDefault();
+          bmoBody.classList.remove('drag-over');
+          const tapeIdx = parseInt(e.dataTransfer.getData('text/plain'), 10);
+          if (!isNaN(tapeIdx) && tapeIdx >= 0 && tapeIdx < TAPE_CATALOG.length) {
+            loadTape(tapeIdx);
+          }
+        });
+      });
+    }
+
+    window.onYouTubeIframeAPIReady = function() {
+      player = new YT.Player('yt', {
+        height: '100%',
+        width: '100%',
+        playerVars: {
+          'autoplay': 1,
+          'controls': 0,
+          'rel': 0,
+          'modestbranding': 1,
+          'playsinline': 1
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    };
+
+    function onPlayerReady(event) {
+      isPlayerReady = true;
+      player.setVolume(volume);
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        consoleEl.setAttribute('data-state', 'playing');
+        faceLayer.classList.add('hidden');
+        cover.classList.remove('active');
+        startProgressLoop();
+      } else if (event.data === YT.PlayerState.PAUSED) {
+        consoleEl.setAttribute('data-state', 'paused');
+        cover.classList.add('active');
+        stopProgressLoop();
+      } else if (event.data === YT.PlayerState.ENDED) {
+        stopProgressLoop();
+        playNextTape();
+      }
+    }
+
+    function loadTape(index) {
+      if (index < 0 || index >= TAPE_CATALOG.length) return;
+
+      activeTapeIndex = index;
+      const tape = TAPE_CATALOG[index];
+
+      playBeep(180, 'square', 0.12);
+      consoleEl.setAttribute('data-state', 'loading');
+      faceText.textContent = "YÜKLENİYOR...";
+
+      slotTape.style.background = tape.shell;
+
+      nowEyebrow.textContent = `SIDE ${tape.side} (${tape.year})`;
+      nowTitle.textContent = tape.title;
+      nowMeta.textContent = tape.artist;
+      nowLink.href = `https://www.youtube.com/watch?v=${tape.ytId}`;
+      nowLink.hidden = false;
+      nowTape.style.background = tape.shell;
+
+      ticker.textContent = `▶ OYNATILIYOR: ${tape.title.toUpperCase()} - METALLICA`;
+      osd.textContent = `▶ 00${index + 1}`;
+
+      highlightActiveTape();
+
+      setTimeout(() => {
+        if (isPlayerReady && player && player.loadVideoById) {
+          player.loadVideoById(tape.ytId);
+          player.playVideo();
+        } else {
+          const ytContainer = document.getElementById('yt');
+          ytContainer.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${tape.ytId}?autoplay=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+          consoleEl.setAttribute('data-state', 'playing');
+          faceLayer.classList.add('hidden');
+        }
+      }, 350);
+    }
+
+    function highlightActiveTape() {
+      document.querySelectorAll('.tape').forEach(t => {
+        const idx = parseInt(t.dataset.index, 10);
+        if (idx === activeTapeIndex) {
+          t.classList.add('active-playing');
+        } else {
+          t.classList.remove('active-playing');
+        }
+      });
+    }
+
+    function togglePlayPause() {
+      if (activeTapeIndex === -1) {
+        loadTape(0);
+        return;
+      }
+
+      if (isPlayerReady && player) {
+        const state = player.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+          player.pauseVideo();
+        } else {
+          player.playVideo();
+        }
+      }
+    }
+
+    function ejectTape() {
+      if (activeTapeIndex === -1) return;
+
+      playBeep(120, 'sawtooth', 0.15);
+      activeTapeIndex = -1;
+
+      if (isPlayerReady && player && player.stopVideo) {
+        player.stopVideo();
+      }
+
+      consoleEl.setAttribute('data-state', 'idle');
+      faceLayer.classList.remove('hidden');
+      faceText.textContent = "KASET ÇIKARILDI!";
+
+      nowEyebrow.textContent = "BOŞTA";
+      nowTitle.textContent = "Kaset takılı değil";
+      nowMeta.textContent = "Raftan bir kaset seç ya da mavi üçgenle başlat.";
+      nowLink.hidden = true;
+      nowTape.style.background = "#222";
+
+      ticker.textContent = "HEAVY METAL HAZIR... KASET TAK!";
+      osd.textContent = "▶ 000";
+      seekFill.style.width = "0%";
+
+      highlightActiveTape();
+      stopProgressLoop();
+
+      setTimeout(() => {
+        if (activeTapeIndex === -1) {
+          faceText.textContent = "SEÇ & HEADBANG!";
+        }
+      }, 1500);
+    }
+
+    function playNextTape() {
+      const nextIdx = (activeTapeIndex + 1) % TAPE_CATALOG.length;
+      loadTape(nextIdx);
+    }
+
+    function playPrevTape() {
+      const prevIdx = (activeTapeIndex - 1 + TAPE_CATALOG.length) % TAPE_CATALOG.length;
+      loadTape(prevIdx);
+    }
+
+    function playShuffleTape() {
+      const randomIdx = Math.floor(Math.random() * TAPE_CATALOG.length);
+      loadTape(randomIdx);
+    }
+
+    function adjustVolume(delta) {
+      volume = Math.max(0, Math.min(100, volume + delta));
+      if (isPlayerReady && player) {
+        player.setVolume(volume);
+      }
+      playBeep(250 + volume * 2, 'sawtooth', 0.05);
+      ticker.textContent = `SES DÜZEYİ: %${volume}`;
+      setTimeout(() => {
+        if (activeTapeIndex !== -1) {
+          const tape = TAPE_CATALOG[activeTapeIndex];
+          ticker.textContent = `▶ OYNATILIYOR: ${tape.title.toUpperCase()} - METALLICA`;
+        }
+      }, 1200);
+    }
+
+    function startProgressLoop() {
+      stopProgressLoop();
+      progressTimer = setInterval(() => {
+        if (isPlayerReady && player && player.getCurrentTime && player.getDuration) {
+          const currentTime = player.getCurrentTime();
+          const duration = player.getDuration();
+          if (duration > 0) {
+            const pct = (currentTime / duration) * 100;
+            seekFill.style.width = `${pct}%`;
+          }
+        }
+      }, 500);
+    }
+
+    function stopProgressLoop() {
+      if (progressTimer) clearInterval(progressTimer);
+    }
+
+    function setupControls() {
+      document.querySelectorAll('[data-act]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const act = btn.dataset.act;
+          if (act === 'toggle') togglePlayPause();
+          else if (act === 'eject') ejectTape();
+          else if (act === 'next') playNextTape();
+          else if (act === 'prev') playPrevTape();
+          else if (act === 'shuffle') playShuffleTape();
+          else if (act === 'volup') adjustVolume(10);
+          else if (act === 'voldown') adjustVolume(-10);
+        });
+      });
+
+      cover.addEventListener('click', togglePlayPause);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') playNextTape();
+        else if (e.key === 'ArrowLeft') playPrevTape();
+        else if (e.key === 'ArrowUp') adjustVolume(10);
+        else if (e.key === 'ArrowDown') adjustVolume(-10);
+        else if (e.key === ' ') {
+          e.preventDefault();
+          togglePlayPause();
+        } else if (e.key === 'Escape') ejectTape();
+      });
+
+      const seek = document.getElementById('seek');
+      seek.addEventListener('click', (e) => {
+        if (isPlayerReady && player && player.getDuration) {
+          const rect = seek.getBoundingClientRect();
+          const pos = (e.clientX - rect.left) / rect.width;
+          const duration = player.getDuration();
+          player.seekTo(pos * duration, true);
+        }
+      });
+
+      document.getElementById('fsBtn').addEventListener('click', () => {
+        const tvVideo = document.querySelector('.tv-video');
+        if (!document.fullscreenElement) {
+          tvVideo.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen();
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderRack();
+      setupDragAndDrop();
+      setupControls();
+    });
+  </script>
+</body>
+</html>
